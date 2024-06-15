@@ -23,9 +23,11 @@ export const startServer = () => {
   app.get('/contacts', async (req, res) => {
     const contacts = await getContacts();
     res.status(200).json({
+      message: 'Successfully found contacts!',
       data: contacts,
     });
   });
+
   app.get('/contacts/:id', async (req, res) => {
     const contact = await getContactById(req.params.id);
     if (!contact) {
@@ -36,6 +38,7 @@ export const startServer = () => {
     }
 
     res.status(200).json({
+      message: `Successfully found contact with id ${req.params.id}!`,
       data: contact,
     });
   });
