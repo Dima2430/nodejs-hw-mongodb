@@ -5,9 +5,7 @@ export const getContacts = async () => {
 };
 
 export const getContactById = async (contactId) => {
-  console.log(`Fetching contact with ID: ${contactId}`);
   const contact = await Contacts.findById(contactId);
-  console.log(`Contact fetched: ${contact}`);
   return contact;
 };
 
