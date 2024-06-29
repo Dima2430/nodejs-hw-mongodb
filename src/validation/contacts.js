@@ -25,7 +25,6 @@ export const createContactSchema = Joi.object({
     'any.only': 'Favorite must be one of [work, home, personal]',
     'any.required': 'Favorite is required',
   }),
-  userId: Joi.string().required(),
 });
 
 export const updateContactSchema = Joi.object({
