@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import { FIFTEEN_MINUTES, ONE_DAY, TEMPLATES_DIR } from '../constans/index.js';
 import { randomBytes } from 'crypto';
 import jwt from 'jsonwebtoken';
-import { SMTP } from '../constants/index.js';
+import { SMTP } from '../constans/index.js';
 import { env } from '../utils/env.js';
 import { sendEmail } from '../utils/sendMail.js';
 import handlebars from 'handlebars';
