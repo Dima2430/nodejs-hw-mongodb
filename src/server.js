@@ -2,13 +2,22 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import { env } from './utils/env.js';
-import { getContacts } from './services/contacts.js';
-import { getContactById } from './services/contacts.js';
+import router from './routers/index.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
+import { UPLOAD_DIR } from './constans/index.js';
 const port = Number(env('PORT', 3000));
 export const startServer = () => {
   const app = express();
+  app.use(
+    express.json({
+      type: ['application/json', 'application/vnd.api+json'],
+      limit: '100kb',
+    }),
+  );
   app.use(cors());
-
+  app.use(cookieParser());
   app.use(
     pino({
       transport: {
@@ -20,40 +29,11 @@ export const startServer = () => {
   app.get('/', (req, res) => {
     res.json({ message: 'Hello World!' });
   });
-  app.get('/contacts', async (req, res) => {
-    const contacts = await getContacts();
-    res.status(200).json({
-      message: 'Successfully found contacts!',
-      data: contacts,
-    });
-  });
+  app.use('/uploads', express.static(UPLOAD_DIR));
+  app.use(router);
 
-  app.get('/contacts/:id', async (req, res) => {
-    const contact = await getContactById(req.params.id);
-    if (!contact) {
-      res.status(404).json({
-        message: 'Contact not found',
-      });
-      return;
-    }
-
-    res.status(200).json({
-      message: `Successfully found contact with id ${req.params.id}!`,
-      data: contact,
-    });
-  });
-
-  app.use('*', (req, res) => {
-    res.status(404).json({
-      message: 'Not found',
-    });
-  });
-  app.use((err, req, res, next) => {
-    res.status(500).json({
-      message: err.message,
-      error: err.message,
-    });
-  });
+  app.use('*', notFoundHandler);
+  app.use(errorHandler);
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
   });
