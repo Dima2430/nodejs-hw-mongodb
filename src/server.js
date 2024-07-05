@@ -7,6 +7,7 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import cookieParser from 'cookie-parser';
 import { UPLOAD_DIR } from './constans/index.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 const port = Number(env('PORT', 3000));
 export const startServer = () => {
   const app = express();
@@ -30,6 +31,7 @@ export const startServer = () => {
     res.json({ message: 'Hello World!' });
   });
   app.use('/uploads', express.static(UPLOAD_DIR));
+  app.use('/api-docs', swaggerDocs());
   app.use(router);
 
   app.use('*', notFoundHandler);
