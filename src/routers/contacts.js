@@ -23,7 +23,7 @@ router.get('/:contactId', ctrlWrapper(getContactsByIdController));
 router.post(
   '',
   validateBody(createContactSchema),
-  upload.single('photo'),
+  // upload.single('photo'),
   ctrlWrapper(createContactsController),
 );
 router.delete('/:contactId', ctrlWrapper(deleteContactController));
