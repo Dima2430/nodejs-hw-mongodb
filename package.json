@@ -39,6 +39,5 @@
     "nodemailer": "^6.9.14",
     "pino-http": "^10.1.0",
     "swagger-ui-express": "^5.0.1",
-    "@redocly/cli": "^1.17.1"
   }
 }
