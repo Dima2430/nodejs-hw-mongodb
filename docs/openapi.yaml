@@ -14,7 +14,7 @@ tags:
   - name: Contacts
     description: Operations about contacts
 servers:
-  - url: https://nodejs-hw-mongodb-jzmm.onrender.com
+  - url: https://nodejs-hw-mongodb-1-khpt.onrender.com
   # - url: localhost:3000
 paths:
   # тут будуть посилання на ендпоінти
