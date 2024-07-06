@@ -53,7 +53,7 @@ export const createContactsController = async (req, res, next) => {
       photoUrl = await saveFileToUploadDir(photo);
     }
   }
-  const result = await createContact({ ...req.body, photoUrl }, userId);
+  const result = await createContact({ ...req.body, photo: photoUrl }, userId);
 
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
@@ -94,7 +94,7 @@ export const upsertContactController = async (req, res, next) => {
   }
   const result = await updateContact(
     contactId,
-    { ...req.body, photoUrl },
+    { ...req.body, photo: photoUrl },
     userId,
   );
 
@@ -126,7 +126,7 @@ export const patchContactController = async (req, res, next) => {
   }
   const result = await updateContact(
     contactId,
-    { ...req.body, photoUrl },
+    { ...req.body, photo: photoUrl },
     userId,
   );
 
