@@ -23,19 +23,19 @@ router.get('/:contactId', ctrlWrapper(getContactsByIdController));
 router.post(
   '',
   validateBody(createContactSchema),
-   upload.single('photo'),
+  //  upload.single('photo'),
   ctrlWrapper(createContactsController),
 );
 router.delete('/:contactId', ctrlWrapper(deleteContactController));
 router.put(
   '/:contactId',
-  upload.single('photo'),
+  // upload.single('photo'),
   ctrlWrapper(upsertContactController),
 );
 router.patch(
   '/:contactId',
   validateBody(updateContactSchema),
-  upload.single('photo'),
+  // upload.single('photo'),
   ctrlWrapper(patchContactController),
 );
 export default router;
