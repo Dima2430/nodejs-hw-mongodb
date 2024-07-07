@@ -2,6 +2,9 @@ type: object
 required:
   - name
   - phoneNumber
+  - email
+  - isFavourite
+  - contactType
 properties:
   name:
     description: "Contact's name"
