@@ -23,7 +23,7 @@ export const createContactSchema = Joi.object({
       'string.base': 'Contact type should be a string',
       'any.only': 'Contact type must be one of [work, home, personal]',
     }),
-  isFavorite: Joi.boolean().messages({
+  isFavourite: Joi.boolean().messages({
     'boolean.base': 'Favorite must be a boolean value',
   }),
 });
