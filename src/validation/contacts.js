@@ -44,13 +44,10 @@ export const updateContactSchema = Joi.object({
   email: Joi.string().email().messages({
     'string.email': 'Email must be a valid email address',
   }),
-  contactType: Joi.string().min(3).max(20).optional().messages({
-    'string.base': 'Contact type should be a string',
-    'string.min': 'Contact type should have at least {#limit} characters',
-    'string.max': 'Contact type should have at most {#limit} characters',
+  isFavourite: Joi.boolean().messages({
+    'boolean.base': 'Favorite must be a boolean value',
   }),
-  isFavourite: Joi.string().valid('work', 'home', 'personal').messages({
+  contactType: Joi.string().valid('work', 'home', 'personal').messages({
     'any.only': 'Favorite must be one of [work, home, personal]',
-    'any.required': 'Favorite is required',
   }),
 });
