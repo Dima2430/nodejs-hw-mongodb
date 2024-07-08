@@ -49,7 +49,7 @@ export const updateContactSchema = Joi.object({
     'string.min': 'Contact type should have at least {#limit} characters',
     'string.max': 'Contact type should have at most {#limit} characters',
   }),
-  isFavorite: Joi.string().valid('work', 'home', 'personal').messages({
+  isFavourite: Joi.string().valid('work', 'home', 'personal').messages({
     'any.only': 'Favorite must be one of [work, home, personal]',
     'any.required': 'Favorite is required',
   }),
